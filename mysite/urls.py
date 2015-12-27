@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from lib.views import Hello,current_datetime
+from lib.views import Hello,current_datetime,hours_ahead
 urlpatterns = [
     # Examples:
     # url(r'^$', 'mysite.views.home', name='home'),
@@ -8,5 +8,6 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^hello/$',Hello),
-    url(r'^time/$',current_datetime)
+    url(r'^time/$',current_datetime),
+    url(r'^time/plus/(\d{1,2})/$',hours_ahead)
 ]
