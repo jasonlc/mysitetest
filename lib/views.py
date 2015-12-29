@@ -6,7 +6,12 @@ from django.template.loader import get_template
 import datetime
 
 def Hello(request):
-    return HttpResponse("Hello World")
+    values = request.META.items()
+    values.sort()
+    html = []
+    for k, v in values:
+        html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v))
+    return HttpResponse('<table>%s</table>' % '\n'.join(html))
 
 def current_datetime(request):
     now = datetime.datetime.now()

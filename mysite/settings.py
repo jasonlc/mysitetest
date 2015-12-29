@@ -1,3 +1,4 @@
+#coding=utf8
 """
 Django settings for mysite project.
 
@@ -37,18 +38,20 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lib',
+    # 'lib',
+    'books',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware', #中文配置
 )
 
 ROOT_URLCONF = 'mysite.urls'
@@ -101,3 +104,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#email配置#########################################
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smpt.163.com'                       #SMTP地址 例如: smtp.163.com
+EMAIL_PORT = 25                       #SMTP端口 例如: 25
+EMAIL_HOST_USER = 'lc20151227@163.com'                  #我自己的邮箱 例如: xxxxxx@163.com
+EMAIL_HOST_PASSWORD = 'testemail'              #我的邮箱密码 例如  xxxxxxxxx
+EMAIL_SUBJECT_PREFIX = u'vmaig'       #为邮件Subject-line前缀,默认是'[django]'
+EMAIL_USE_TLS = True                  #与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
